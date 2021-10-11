@@ -38,6 +38,6 @@ app.use((req, res, next) => {
 });
 
 // Server Listening Port
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT || 4321, () => {
     console.log(`Listening for client requests on port ${process.env.PORT}`)
 });
