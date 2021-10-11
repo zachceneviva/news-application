@@ -16,4 +16,4 @@ mongoose.connection.on('disconnected', () => {
     console.log(`MongoDB has been disconnected.`);
 });
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zashleyos');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zashlios');

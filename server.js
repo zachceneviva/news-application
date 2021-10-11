@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 app.use(session({
-    store: MongoStore.create({mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/zashleyos"}),
+    store: MongoStore.create({mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/zashlios"}),
     secret: "super secret",
     resave: false,
     saveUninitialized: false,
