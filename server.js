@@ -31,6 +31,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use('/', controllers.articles)
+
 // Logger
 app.use((req, res, next) => {    
     console.log(`[${req.url}] ${req.method} - ${new Date().toLocaleTimeString()}`);
@@ -38,6 +40,6 @@ app.use((req, res, next) => {
 });
 
 // Server Listening Port
-app.listen(process.env.PORT || 4321, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(`Listening for client requests on port ${process.env.PORT}`)
 });
