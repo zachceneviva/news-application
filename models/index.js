@@ -1,1 +1,8 @@
-require('../config/db.connection');
+require('../config/db.connection')
+
+module.exports = {
+    Article: require("./Article"),
+    User: require("./User"),
+  };
+
+
