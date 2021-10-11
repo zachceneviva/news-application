@@ -25,27 +25,15 @@ const articleSchema = new mongoose.Schema({
       type: String,
       required: [true, "Please add the full text"],
   },
-  // comments: {
-  //     commentSchema: ({
-  //       id: {
-  //             type: String,
-  //             required: [true, "cannot be empty"],
-  //             unique: true,
-  //       },
-  //       text: {
-  //         type: String,
-  //         required: [true, "cannot be empty"],
-  //       },
-        // timestamp: {
-        //   type: Date,
-        //   required: true,
-        // },
-        // username: {
-        //   type: String,
-        //   required: true,
-        // },
-      // )
-});
+  comments: [{
+    type: mongoose.Types.ObjectId,
+    ref: "Comment"
+  }],
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: "User"
+  }
+}, {timestamps: true});
     
 
 const Article = mongoose.model('Article', articleSchema);
