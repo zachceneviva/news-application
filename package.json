@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch-sass": "sass --watch public/sass/main.scss public/styles/main.css",
+    "watch-sass": "sass --watch public/styles/sass/main.scss public/styles/main.css",
     "watch-nodemon": "nodemon",
     "dev": "concurrently -n sass,server -c 'bgBlue.bold,bgRed.bold' 'npm:watch-sass' 'npm:watch-nodemon'"
   },
