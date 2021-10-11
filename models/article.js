@@ -1,21 +1,52 @@
 const mongoose = require('mongoose');
 
-const productSchema = new mongoose.Schema({
-  name: {
+const articleSchema = new mongoose.Schema({
+  title: {
     type: String,
-    required: [true, 'name can not be empty'],
-    unique: true
+    required: [true],
   },
-  price: {
-    type: Number,
-    min: [0, 'you can not add a negative number'],
-    required: [true, 'price can not be empty'],
+  date: {
+    type: Date,
+    required: [true],
   },
-  image: {
+  articleImage: {
     type: String,
-    required: [true, "image can not be empty"],
-  } 
-});
+    required: [true, "image cannot be empty"],
+    },
+    author: {
+        type: String,
+        required: [true],
+    },
+    quickLook: {
+        type: String,
+        required: [true],
+    },
+    fullText: {
+       // type: String ???,
+       required: [true],
+    },
+    comments: {
+        commentSchema: ({
+          id: {
+                type: String,
+                required: [true, "cannot be empty"],
+                unique: true,
+          },
+          text: {
+            type: String,
+            required: [true, "cannot be empty"],
+          },
+          // timestamp: {
+          //   type: Date,
+          //   required: true,
+          // },
+          username: {
+            type: String,
+            required: true,
+          },
+        )
+    };
+    
 
-const Product = mongoose.model('Product', productSchema);
-module.exports = Product;
+    const Article = mongoose.model('Article', articleSchema);
+module.exports = Article
