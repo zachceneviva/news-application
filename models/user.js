@@ -28,29 +28,15 @@ const userSchema = new mongoose.Schema({
       required: [true, 'please select an account type'],
       enum: ['Writer', 'Reader']
     },
-    // comments: {
-    //   commentSchema: ({
-    //     id: {
-    //           type: String,
-    //           required: [true, "cannot be empty"],
-    //           unique: true,
-    //     },
-    //     text: {
-    //       type: String,
-    //       required: [true, "cannot be empty"],
-    //     },
-        // timestamp: {
-        //   type: Date,
-        //   required: true,
-        // },
-        // username//self: {
-        //   type: String,
-        //   required: true,
-        // },
-    //   }),
-    // },
-  // timestamps: true,
-});
+    comments: [{
+      type: mongoose.Types.ObjectId,
+      ref: "Comment"
+    }],
+    articles: [{
+      type: mongoose.Types.ObjectId,
+      ref: "User"
+    }]
+}, {timestamps: true});
 
 const User = mongoose.model('User', userSchema)
 module.exports = User
