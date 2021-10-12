@@ -1,5 +1,6 @@
 // Dependencies
 require('dotenv').config();
+require('./config/db.connection');
 const express = require('express');
 const methodOverride = require('method-override');
 const session = require('express-session');
@@ -31,6 +32,7 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use('/', controllers.auth)
 app.use('/', controllers.articles)
 
 // Logger

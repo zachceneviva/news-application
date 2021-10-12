@@ -8,6 +8,37 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <% for(let idx=0; idx < articles.length; idx++){ %>
+                    <% const article=articles[idx] %>
+
+                    <p class="author">
+                        <%= article.author %>
+                    </p>
+
+                    <p class="date">
+                        <%= article.date %>
+                    </p>
+
+                    <h1 class="title">
+                        <%= article.title %>
+                    </h1>
+
+                    <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
+
+                    <p class="quick-look">
+                        <%= article.quickLook %>
+                    </p>
+
+                    <a href="/show/<%= article.id %>" class="article-link">Go Deeper</a>
+
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
