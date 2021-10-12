@@ -3,54 +3,40 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: [true, 'please enter email'],
+        required: [true, 'Please enter an email'],
         unique: true,
       },
-  username: {
-    type: String,
-    required: [true, 'please enter username'],
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: [true, 'please enter password'],
-    unique: true,
-  },
-  // firstname: {
-  //     type: String,
-  //     required: [true, "please enter your firstname"],
-  // },
-  location: {
-    type: String,
-    required: [false, 'please enter your location'],
-  },
-  about: {
-    type: String,
-    required: [false, 'please say a bit about you and your interests'],
-  },
-  comments: {
-    commentSchema: ({
-      id: {
+    username: {
+      type: String,
+      required: [true, 'Please enter an username'],
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: [true, 'please enter password'],
+    },
+    fname: {
         type: String,
-            required: [true, "cannot be empty"],
-            unique: true,
-      },
-      text: {
-        type: String,
-        required: [true, "cannot be empty"],
-      },
-      // timestamp: {
-      //   type: Date,
-      //   required: true,
-      // },
-      username//self: {
-        type: String,
-        required: true,
-      },
-    }),
-  },
-  // timestamps: true,
-});
+        required: [true, "Please enter your first name"],
+    },
+    location: {
+      type: String,
+      required: false,
+    },
+    role: {
+      type: String,
+      required: [true, 'please select an account type'],
+      enum: ['Writer', 'Reader']
+    },
+    comments: [{
+      type: mongoose.Types.ObjectId,
+      ref: "Comment"
+    }],
+    articles: [{
+      type: mongoose.Types.ObjectId,
+      ref: "User"
+    }]
+}, {timestamps: true});
 
 const User = mongoose.model('User', userSchema)
 module.exports = User
