@@ -2,19 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { Article, User } = require("../models");
 
-Article.insertMany( {
-    title: "Giraffe Goes to Moon",
-    date: new Date().toLocaleString(),
-    articleImage: "https://images.ctfassets.net/81iqaqpfd8fy/3r4flvP8Z26WmkMwAEWEco/870554ed7577541c5f3bc04942a47b95/78745131.jpg?w=1200&h=1200&fm=jpg&fit=fill",
-    author: "Zach Buenaventura",
-    quickLook: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    fullText: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-});
-
 //home / index
 router.get('/home', async function (req, res, next) {
     try {
-        const article = Article.find({});
+        const article = await Article.find({});
         const context = {
             articles: article
         }
@@ -32,7 +23,7 @@ router.get('/new', (req, res) => {
   res.render('./news/write.ejs');
 });
 
-router.post('/', async (req, res) => { 
+router.post('/new', async (req, res) => { 
   try {
     await Article.create( req.body )
 
@@ -81,7 +72,7 @@ router.put('/:articleId', (req, res) => {
       (error, updatedArticle) => {
           if (error) return console.log(error);
           
-          return res.redirect(`/news/${updatedArticle.id}`);
+          return res.redirect(`/${updatedArticle.id}`);
       },
   );
 });
@@ -89,7 +80,7 @@ router.put('/:articleId', (req, res) => {
 //Delete
 router.delete('/:articleId', async (req, res, next) => {
    try {
-       await Article.findByIdAndDelete(req.params.id);
+       await Article.findByIdAndDelete(req.params.articleId);
        return res.redirect('/home')
    } catch (error) {
        console.log(error);
