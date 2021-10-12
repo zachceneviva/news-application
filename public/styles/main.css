@@ -1,13 +1,14 @@
-#main-logo {
-  height: auto;
-  width: auto;
-  max-height: 72px;
-  max-width: 250 px;
-}
-
 body {
   height: 100%;
   margin: 0;
+}
+
+#main-logo {
+  height: 50px;
+}
+
+#login-box, #register-box {
+  box-shadow: 0px 0px 2px 0.25px lightgrey;
 }
 
 /*# sourceMappingURL=main.css.map */
