@@ -8,12 +8,55 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                
+    <div class="form">
+        <form action="/home" method="POST">
+            <div class="mt-4">
+                <label class="form-label">Author</label>
+                <input class="form-control"
+                type="text"
+                placeholder="e.g. Ted Lasso"
+                name="author">
             </div>
-        </div>
+
+            <!-- <div class="mt-4">
+                <label class="form-label">Date</label>
+                <input class="form-control"
+                type="text"
+                placeholder="MM/DD/YYYY"
+                name="date">
+            </div> -->
+
+            <div class="mt-4 mb-4">
+                <label class="form-label">Image</label>
+                <input class="form-control"
+                type="text"
+                placeholder="Link to article image"
+                name="articleImage">
+            </div>
+
+            <div class="mt-4">
+                <label class="form-label">Article Summary</label>
+                <input class="form-control form-control-lg" 
+                type="text"
+                placeholder="What the story is and why it matters"
+                name="quickLook">
+            </div>
+
+            <div class="mt-4">
+                <label class="form-label">Full Article</label>
+                <input class="form-control form-control-lg"
+                type="text"
+                placeholder="The full story"
+                name="fullText">
+            </div>
+        
+            <div class="submit">
+                <input type="submit" class="btn btn-primary" value="Post Article">
+        </form>
+                <a href="/home" class="btn btn-danger">
+                    Cancel
+                </a>
+            </div>
     </div>
 
 
