@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     
-    <%- include('../partials/header.ejs', {page: 'Home'}) %>
+    <%- include('../partials/header.ejs', {page: 'Go Deeper'}) %>
 
 </head>
 <body>
@@ -11,8 +11,6 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <% for(let idx=0; idx < articles.length; idx++){ %>
-                    <% const article=articles[idx] %>
 
                     <p class="author">
                         <%= article.author %>
@@ -28,11 +26,18 @@
 
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
-                    <p class="quick-look">
-                        <%= article.quickLook %>
+                    <p class="full-text">
+                        <%= article.fullText %>
                     </p>
 
-                    <a href="/show/<%= article.id %>" class="article-link">Go Deeper</a>
+                    //edit and delete buttons
+                    <form class="form-inline my-2 my-lg-0 mr-3" action="/home/<%= Article.id %>/edit">
+                        <input id="edit" type="edit" class="btn btn-primary my-2 my-sm-0" value="Edit">
+                    </form>
+                    
+                    <form class="form-inline my-2 my-lg-0" action="/products/<%= product.id %>?_method=DELETE" method="POST">
+                        <input type="delete" class="btn btn-light my-2 my-sm-0" value="Delete">
+                    </form>
 
             </div>
         </div>
