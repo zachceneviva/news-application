@@ -9,7 +9,7 @@
     <%- include('../partials/nav.ejs') %>
 
     <div class="form">
-        <form action="/home" method="POST">
+        <form action="/new" method="POST">
             <div class="mt-4">
                 <label class="form-label">Author</label>
                 <input class="form-control"
@@ -18,13 +18,21 @@
                 name="author">
             </div>
 
-            <!-- <div class="mt-4">
+            <div class="mt-4">
                 <label class="form-label">Date</label>
                 <input class="form-control"
                 type="text"
                 placeholder="MM/DD/YYYY"
                 name="date">
-            </div> -->
+            </div>
+
+            <div class="mt-4">
+                <label class="form-label">Title</label>
+                <input class="form-control"
+                type="text"
+                placeholder="Your headline"
+                name="title">
+            </div>
 
             <div class="mt-4 mb-4">
                 <label class="form-label">Image</label>
@@ -36,18 +44,20 @@
 
             <div class="mt-4">
                 <label class="form-label">Article Summary</label>
-                <input class="form-control form-control-lg" 
+                <textarea class="form-control"
                 type="text"
                 placeholder="What the story is and why it matters"
-                name="quickLook">
+                name="quickLook" 
+                rows="5"></textarea>
             </div>
 
             <div class="mt-4">
                 <label class="form-label">Full Article</label>
-                <input class="form-control form-control-lg"
+                <textarea class="form-control"
                 type="text"
                 placeholder="The full story"
-                name="fullText">
+                name="fullText" 
+                rows="10"></textarea>
             </div>
         
             <div class="submit">
