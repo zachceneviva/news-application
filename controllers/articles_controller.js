@@ -4,26 +4,31 @@ const { Article, User } = require("../models");
 
 
 //home / index
-router.get('/home', function (req, res) {
-        Article.find({}, (error, articles) => {
-            if (error) return console.log(error)
-            const context = {
-                articles,
-            }
-          
-            res.render("./news/home.ejs", context);
-        });
+router.get('/home', async function (req, res, next) {
+    try {
+        const article = Article.find({});
+        const context = {
+            articles: article
+        }
+
+        res.render("./news/home.ejs", context);
+    } catch (error) {
+        console.log(error);
+        res.error = error;
+        return next ();
+    }
 });
 
 // Create new 
 router.get('/new', (req, res) => { 
-  res.render('new.ejs');
+  res.render('./news/write.ejs');
 });
-router.post('/', async (req, res) => {   //'/' maybe = '/home'?
+
+router.post('/', async (req, res) => { 
   try {
     await Article.create( req.body )
 
-    return res.redirect('/articles');
+    return res.redirect('/home');
   } catch (error) {
     return console.log(error);
   }
@@ -33,12 +38,10 @@ router.post('/', async (req, res) => {   //'/' maybe = '/home'?
 router.get("/:id", async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
-    const user = await User.find({ article: req.params.id }).populate('article'); 
     const context = {
       article,
-      review,
     }
-    return res.render("news/show.ejs", context);   //can we change news to articles?
+    return res.render("news/show.ejs", context); 
   } catch (error) {
     console.log(error);
     req.error = error;
@@ -62,7 +65,7 @@ router.put('/:articleId', (req, res) => {
   Article.findByIdAndUpdate(
       req.params.articleId,
      {
-       $set: req.body
+       $set: {...req.body}
      },
       {
         new: true
@@ -76,13 +79,15 @@ router.put('/:articleId', (req, res) => {
 });
 
 //Delete
-router.delete('/:articleId', (req, res) => {
-   Article.findByIdAndDelete( req.params.articleId, (error, deletedArticle) => {
-        if (error) return console.log(error);
-    
-        console.log(deletedArticle);
-        return res.redirect('/article');
-    });
+router.delete('/:articleId', async (req, res, next) => {
+   try {
+       await Article.findByIdAndDelete(req.params.id);
+       return res.redirect('/home')
+   } catch (error) {
+       console.log(error);
+       req.error = error;
+       return next();
+   }
 })
 
 module.exports = router
