@@ -1,6 +1,11 @@
+$headline-font: 'Lato', sans-serif;
+$article-font: 'Lora', serif; 
+
 body {
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
     margin: 0;
+    font-family: $headline-font;
 }
 
 #main-logo {
@@ -10,3 +15,19 @@ body {
 #login-box, #register-box {
     box-shadow: 0px 0px 2px .25px lightgrey;
 } 
+
+.quick-look .full-text {
+    font-family: $article-font
+}
+
+.form-container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+}
