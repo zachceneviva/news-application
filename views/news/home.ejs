@@ -11,28 +11,27 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <% for(let idx=0; idx < articles.length; idx++){ %>
-                    <% const article=articles[idx] %>
+                <% for(let i=0; i < articles.length; i++){ %>
 
                     <p class="author">
-                        <%= article.author %>
+                        <%= articles[i].author %>
                     </p>
 
                     <p class="date">
-                        <%= article.date %>
+                        <%= articles[i].date %>
                     </p>
 
                     <h1 class="title">
-                        <%= article.title %>
+                        <%= articles[i].title %>
                     </h1>
 
-                    <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
+                    <img src="<%= articles[i].articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="quick-look">
-                        <%= article.quickLook %>
+                        <%= articles[i].quickLook %>
                     </p>
 
-                    <a href="/show/<%= article.id %>" class="article-link">Go Deeper</a>
+                    <a href="/<%= articles[i].id %>" class="article-link">Go Deeper</a>
                     <% } %>
             </div>
         </div>
