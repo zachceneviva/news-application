@@ -11,8 +11,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-                <% for(let idx=0; idx < articles.length; idx++){ %>
-                    <% const article=articles[idx] %>
+                <% for(let idx=0; idx < article.length; idx++){ %>
+                    <% const article=article[idx] %>
 
                     <p class="author">
                         <%= article.author %>
@@ -33,7 +33,7 @@
                     </p>
 
                     <a href="/show/<%= article.id %>" class="article-link">Go Deeper</a>
-
+                <% } %>
             </div>
         </div>
     </div>
