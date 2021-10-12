@@ -9,7 +9,7 @@ const {User} = require('../models');
 
 // GET route for Register page
 router.get('/register', (req, res) => {
-    return res.render('./auth/register.ejs')
+    return res.render('auth/register.ejs')
 });
 
 // GET route for Login page
