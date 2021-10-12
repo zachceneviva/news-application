@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     
-    <%- include('../partials/header.ejs', {page: 'Home'}) %>
+    <%- include('../partials/header.ejs', {page: 'Write'}) %>
 
 </head>
 <body>
@@ -13,7 +13,6 @@
             <div class="col-sm">
                 <% for(let idx=0; idx < articles.length; idx++){ %>
                     <% const article=articles[idx] %>
-                    <div class="author"></div>
             </div>
         </div>
     </div>
