@@ -18,7 +18,7 @@
                         <%= article.author %>
                     </p>
 
-                    <p class="data-bs-toggle">
+                    <p class="date">
                         <%= article.date %>
                     </p>
 
@@ -28,12 +28,11 @@
 
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
-                    <p class="data-bs-toggle">
-                        <%= article.date %>
+                    <p class="quick-look">
+                        <%= article.quickLook %>
                     </p>
 
-
-
+                    <a href="/show/<%= article.id %>" class="article-link">Go Deeper</a>
 
             </div>
         </div>

@@ -11,7 +11,34 @@
     <div class="container">
         <div class="row">
             <div class="col-sm">
-            Single Column Test
+
+                    <p class="author">
+                        <%= article.author %>
+                    </p>
+
+                    <p class="date">
+                        <%= article.date %>
+                    </p>
+
+                    <h1 class="title">
+                        <%= article.title %>
+                    </h1>
+
+                    <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
+
+                    <p class="full-text">
+                        <%= article.fullText %>
+                    </p>
+
+                    //edit and delete buttons
+                    <form class="form-inline my-2 my-lg-0 mr-3" action="/home/<%= Article.id %>/edit">
+                        <input id="edit" type="edit" class="btn btn-primary my-2 my-sm-0" value="Edit">
+                    </form>
+                    
+                    <form class="form-inline my-2 my-lg-0" action="/products/<%= product.id %>?_method=DELETE" method="POST">
+                        <input type="delete" class="btn btn-light my-2 my-sm-0" value="Delete">
+                    </form>
+
             </div>
         </div>
     </div>
