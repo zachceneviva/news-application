@@ -25,6 +25,12 @@ const articleSchema = new mongoose.Schema({
       type: String,
       required: [true, "Please add the full text"],
   },
+  likes: {
+      type: Number,
+  },
+  views: {
+    type: Number,
+  },
   comments: [{
     type: mongoose.Types.ObjectId,
     ref: "Comment"
