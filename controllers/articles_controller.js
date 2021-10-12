@@ -4,19 +4,15 @@ const { Article, User } = require("../models");
 
 
 //home / index
-router.get('/home', async function (req, res) {
-  try {
-    const articles = await Article.find({});
-  
-    const context = {
-      articles,
-    }
-    
-    res.render("./news/home.ejs", context);
-
-  } catch (error) {
-    return console.log(error);
-  }
+router.get('/home', function (req, res) {
+        Article.find({}, (error, articles) => {
+            if (error) return console.log(error)
+            const context = {
+                articles,
+            }
+          
+            res.render("./news/home.ejs", context);
+        });
 });
 
 // Create new 
