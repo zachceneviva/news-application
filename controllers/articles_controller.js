@@ -32,7 +32,7 @@ router.get('/new', (req, res) => {
   res.render('./news/write.ejs');
 });
 
-router.post('/', async (req, res) => { 
+router.post('/new', async (req, res) => { 
   try {
     await Article.create( req.body )
 
