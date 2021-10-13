@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 
+let dt = new Date();
+
 const articleSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "Please add a title"],
   },
   date: {
-    type: Date,
+    type: String,
     required: [true, "Please add a date"],
+    default: (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear(),
   },
   articleImage: {
     type: String,
@@ -16,6 +19,10 @@ const articleSchema = new mongoose.Schema({
   author: {
       type: String,
       required: [true, "Please add an author"],
+  },
+  topic: {
+    type: String,
+    required: [true, "Please add a topic"]
   },
   quickLook: {
       type: String,

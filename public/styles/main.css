@@ -67,4 +67,14 @@ body {
   margin: 0 auto;
 }
 
+.container {
+  width: 90%;
+  height: 100%;
+}
+.container .author-date-views {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
 /*# sourceMappingURL=main.css.map */

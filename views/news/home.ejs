@@ -12,15 +12,22 @@
         <div class="row">
             <div class="col-sm">
                 <% for(let i=articles.length - 1; i >= 0; i--){ %>
+                <div class="auth-date-views">
+                    <div class="author-date">
+                        <p class="author">
+                            <%= articles[i].author %>
+                        </p>
 
-                    <p class="author">
-                        <%= articles[i].author %>
-                    </p>
-
-                    <p class="date">
-                        <%= articles[i].date %>
-                    </p>
-
+                        <p class="date">
+                            <%= articles[i].date %> - <%= articles[i].topic %>
+                        </p>
+                    </div>
+                        <div class="views">
+                            <p>
+                                Views: <%= articles[i].views %>
+                            </p>
+                        </div>
+                </div>
                     <h1 class="title">
                         <%= articles[i].title %>
                     </h1>
@@ -32,6 +39,7 @@
                     </p>
 
                     <a href="/<%= articles[i].id %>" class="article-link">Go Deeper</a>
+                    <hr>
                     <% } %>
             </div>
         </div>
