@@ -130,8 +130,24 @@ textarea {
   white-space: pre-line;
 }
 
-.author-fulltext {
+.auth-likes {
+  margin-bottom: 20px;
+}
+.auth-likes .author-fulltext, .auth-likes .likes {
   font-size: 12.5px;
+  margin: 0;
+}
+.auth-likes .like-counter {
+  margin-left: 3px;
+}
+
+.bi-heart, .bi-heart-fill {
+  color: red;
+  transition: 0.25s ease;
+}
+.bi-heart:hover, .bi-heart-fill:hover {
+  cursor: pointer;
+  transform: scale(1.02);
 }
 
 /*# sourceMappingURL=main.css.map */
