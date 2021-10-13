@@ -20,7 +20,12 @@ router.get('/home', async function (req, res, next) {
 
 // Create new 
 router.get('/new', (req, res) => { 
-  res.render('./news/write.ejs');
+  if (req.session.currentUser) {
+    res.render('./news/write.ejs');
+  }
+  else {
+    res.redirect('/login')
+  }
 });
 
 router.post('/new', async (req, res) => { 
