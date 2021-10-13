@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const session = require('express-session')
 const { Article, User } = require("../models");
 
 //home / index
@@ -30,7 +31,11 @@ router.get('/new', (req, res) => {
 
 router.post('/new', async (req, res) => { 
   try {
-    await Article.create( req.body )
+    const newArticle = {
+      ...req.body,
+      user: req.session.currentUser.id
+    }
+    await Article.create(newArticle)
 
     return res.redirect('/home');
   } catch (error) {
