@@ -55,11 +55,16 @@ router.get("/:id", async (req, res, next) => {
 
 //Edit
 router.get('/:articleId/edit', async (req, res) => {
-  try {  
-    const article = await Article.findById(req.params.articleId)
-    return res.render('news/edit.ejs', { article });
-  } catch (error) {
-    return console.log(error)
+  if (req.session.currentUser) {
+    try {  
+      const article = await Article.findById(req.params.articleId)
+      return res.render('news/edit.ejs', { article });
+    } catch (error) {
+      return console.log(error)
+    }
+  } 
+  else {
+    res.redirect('/login')
   }
 });
 
