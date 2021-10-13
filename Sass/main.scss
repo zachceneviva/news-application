@@ -161,10 +161,8 @@ textarea {
 
 .bi-heart, .bi-heart-fill {
     color: red;
-    transition: 0.25s ease;
     &:hover {
         cursor: pointer;
-        transform: scale(1.02);
     }
 }
 .author-fulltext {
