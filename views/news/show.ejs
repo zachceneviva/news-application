@@ -37,7 +37,7 @@
                     </form>
 
                     <form id="delete-form" class="form-inline" action="/<%= article.id %>?_method=DELETE" method="POST">
-                        <input id="edit-delete" type="submit" class="<%= (user !== article.user) ? 'd-none' : 'btn btn-primary' %>" value="Delete">
+                        <input id="edit-delete" type="submit" class="<%= (user !== article.user) ? 'd-none' : 'btn btn-danger' %>" value="Delete">
                     </form>
                 </div>
 

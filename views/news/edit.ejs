@@ -14,13 +14,14 @@
     </div>
     <div class="form">
 
-        <form action="/new" method="POST">
+        <form action="/<%= article.id %>?_method=PUT" method="POST">
             <div class="mt-0">
                 <label class="form-label">Author</label>
                 <input class="form-control"
                 type="text"
                 placeholder="e.g. Ted Lasso"
-                name="author">
+                name="author"
+                value="<%= article.author %>">
             </div>
 
             <div class="mt-4">
@@ -28,7 +29,8 @@
                 <input class="form-control"
                 type="text"
                 placeholder="MM/DD/YYYY"
-                name="date">
+                name="date"
+                value="<%= article.date %>">
             </div>
 
             <div class="mt-4">
@@ -36,7 +38,8 @@
                 <input class="form-control"
                 type="text"
                 placeholder="Your headline"
-                name="title">
+                name="title"
+                value="<%= article.title %>">
             </div>
 
             <div class="mt-4 mb-4">
@@ -44,7 +47,8 @@
                 <input class="form-control"
                 type="text"
                 placeholder="Link to article image"
-                name="articleImage">
+                name="articleImage"
+                value="<%= article.articleImage %>">
             </div>
 
             <div class="mt-4">
@@ -53,7 +57,7 @@
                 type="text"
                 placeholder="What the story is and why it matters"
                 name="quickLook" 
-                rows="5"></textarea>
+                rows="5"><%= article.quickLook %></textarea>
             </div>
 
             <div class="mt-4 mb-4">
@@ -62,11 +66,11 @@
                 type="text"
                 placeholder="The full story"
                 name="fullText" 
-                rows="10"></textarea>
+                rows="10"><%= article.fullText %></textarea>
             </div>
         
             <div class="submit mb-5">
-                <input type="submit" class="btn btn-primary" value="Post Article">
+                <input type="submit" class="btn btn-primary" value="Update Article">
         </form>
                 <a href="/home" class="btn btn-danger">
                     Cancel
