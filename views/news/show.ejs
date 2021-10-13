@@ -31,15 +31,19 @@
                         <%= article.fullText %>
                     </p>
 
-                    
+                    <hr />
+
                 <div class="input">
                     <form id="edit-form" class="form-inline" action="/<%= article.id %>/edit">
                         <input id="edit-edit" type="submit" class="btn btn-primary" value="Edit">
                     </form>
 
                     <form id="delete-form" class="form-inline" action="/<%= article.id %>?_method=DELETE" method="POST">
-                        <input id="edit-delete" type="submit" class="btn btn-danger" value="Delete">
+                        <input id="edit-delete" type="submit" class="btn btn-light my-2 my-sm-0 border border-dark" value="Delete">
                     </form>
+
+                    <br /><br />
+
                 </div>
 
             </div>
