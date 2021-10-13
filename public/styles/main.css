@@ -139,4 +139,19 @@ textarea {
   margin-bottom: 10px;
 }
 
+.page-title {
+  width: 50%;
+  text-align: left;
+  margin: 0 auto;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.sep-line {
+  width: 50%;
+  margin: 0 auto;
+  color: rgb(167, 167, 167);
+  margin-bottom: 25px;
+}
+
 /*# sourceMappingURL=main.css.map */
