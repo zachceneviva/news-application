@@ -96,15 +96,6 @@
             </div>
 
             <div class="mt-4">
-                <label class="form-label">Date</label>
-                <input class="form-control"
-                type="text"
-                placeholder="MM/DD/YYYY"
-                name="date"
-                value="<%= article.date %>">
-            </div>
-
-            <div class="mt-4">
                 <label class="form-label">Title</label>
                 <input class="form-control"
                 type="text"
@@ -112,6 +103,14 @@
                 name="title"
                 value="<%= article.title %>">
             </div>
+
+            <div class="mt-4">
+                <label class="form-label">Topic</label>
+                <input class="form-control"
+                type="text"
+                placeholder="e.g. Health"
+                name="topic"
+                value="<%= article.topic %>">
 
             <div class="mt-4 mb-4">
                 <label class="form-label">Image</label>
