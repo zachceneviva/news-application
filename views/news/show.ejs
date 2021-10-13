@@ -8,22 +8,23 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-
-                    <p class="author">
-                        <%= article.author %>
-                    </p>
-
+    <div class="content">
+        <div class="article-content">
+            <div class="auth-date-views">
+                <div class="author-date">
                     <p class="date">
-                        <%= article.date %>
+                        <%= article.date %> - <%= article.topic %>
                     </p>
-
+                </div>
+            </div>
                     <h1 class="title">
                         <%= article.title %>
                     </h1>
 
+                    <p class="author-fulltext">
+                        <%= article.author %>
+                    </p>
+                
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="full-text">

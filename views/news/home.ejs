@@ -8,19 +8,25 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
+    <div class="content">
+        <div class="article-content">
                 <% for(let i=articles.length - 1; i >= 0; i--){ %>
+                <div class="auth-date-views">
+                    <div class="author-date">
+                        <p class="author">
+                            <%= articles[i].author %>
+                        </p>
 
-                    <p class="author">
-                        <%= articles[i].author %>
-                    </p>
-
-                    <p class="date">
-                        <%= articles[i].date %>
-                    </p>
-
+                        <p class="date">
+                            <%= articles[i].date %> - <%= articles[i].topic %>
+                        </p>
+                    </div>
+                    <div class="views">
+                        <p>
+                            Views: <%= articles[i].views %>
+                        </p>
+                    </div>
+                </div>
                     <h1 class="title">
                         <%= articles[i].title %>
                     </h1>
@@ -28,13 +34,13 @@
                     <img src="<%= articles[i].articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="quick-look">
-                        <%= articles[i].quickLook %>
+                        <b><em>Quick Look: </em></b> <%= articles[i].quickLook %>
                     </p>
 
-                    <a href="/<%= articles[i].id %>" class="article-link">Go Deeper</a>
+                    <a href="/<%= articles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
+                    <hr>
                     <% } %>
             </div>
-        </div>
     </div>
 
 
