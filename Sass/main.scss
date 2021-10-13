@@ -10,7 +10,7 @@ body {
 
 #main-logo {
     height: 50px;
-    margin-left: 15px;
+    margin-left: 65px;
 }
 
 #login-box, #register-box {
@@ -73,17 +73,69 @@ body {
 }
 
 
-.container {
-    width: 90%;
+.content {
+    width: 100%;
     height: 100%;
+    display: block;
 
-    .author-date-views {
+    .article-content{ 
+        width: 67.5%;
+        margin: 0 auto;
+        height: 100%;
+        margin-top: 25px;
+        display: block;
+    }
+
+    .auth-date-views {
+        width: 100%;
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: space-between;
     }
 
     .author-date {
-        
+        display: block;
+        margin-bottom: 25px;
+
+        .author{
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 10px;
+        }
     }
+
+    .views {
+        font-size: 10px;
+    }
+
+    img {
+        width: 100%;
+        height: 50%;
+    };
+
+    a {
+        text-decoration: none;
+        font-size: 17.5px;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .quick-look {
+        margin-top: 10px;
+        font-size: 20px;
+        white-space: pre-line;
+    }
+
+    hr {
+        margin-bottom: 25px;
+    }
+}
+
+textarea {
+    white-space: pre-line;
 }
