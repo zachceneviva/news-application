@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const session = require('express-session')
 const { Article, User } = require("../models");
 
 //home / index
@@ -20,12 +21,21 @@ router.get('/home', async function (req, res, next) {
 
 // Create new 
 router.get('/new', (req, res) => { 
-  res.render('./news/write.ejs');
+  if (req.session.currentUser) {
+    res.render('./news/write.ejs');
+  }
+  else {
+    res.redirect('/login')
+  }
 });
 
 router.post('/new', async (req, res) => { 
   try {
-    await Article.create( req.body )
+    const newArticle = {
+      ...req.body,
+      user: req.session.currentUser.id
+    }
+    await Article.create(newArticle)
 
     return res.redirect('/home');
   } catch (error) {
@@ -50,11 +60,16 @@ router.get("/:id", async (req, res, next) => {
 
 //Edit
 router.get('/:articleId/edit', async (req, res) => {
-  try {  
-    const article = await Article.findById(req.params.articleId)
-    return res.render('edit.ejs', { article });
-  } catch (error) {
-    return console.log(error)
+  if (req.session.currentUser) {
+    try {  
+      const article = await Article.findById(req.params.articleId)
+      return res.render('news/edit.ejs', { article });
+    } catch (error) {
+      return console.log(error)
+    }
+  } 
+  else {
+    res.redirect('/login')
   }
 });
 
