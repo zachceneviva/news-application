@@ -33,11 +33,11 @@
                     
                 <div class="input">
                     <form id="edit-form" class="form-inline" action="/<%= article.id %>/edit">
-                        <input id="edit-edit" type="submit" class="<%= article.user.ObjectId === user ? 'btn btn-primary' : 'd-none' %>" value="Edit">
+                        <input id="edit-edit" type="submit" class="btn btn-primary" value="Edit">
                     </form>
 
                     <form id="delete-form" class="form-inline" action="/<%= article.id %>?_method=DELETE" method="POST">
-                        <input id="edit-delete" type="submit" class="<%= article.user.ObjectId === user ? 'btn btn-danger' : 'd-none' %>" value="Delete">
+                        <input id="edit-delete" type="submit" class="btn btn-danger" value="Delete">
                     </form>
                 </div>
 
