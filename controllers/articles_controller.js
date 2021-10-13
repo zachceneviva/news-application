@@ -19,6 +19,19 @@ router.get('/home', async function (req, res, next) {
     }
 });
 
+// Like Route
+router.get ('/:articleId/like', async (req, res, next) => {
+  try {
+    const article = await Article.findById(req.params.id);
+    article.likes += 1;
+    article.save();
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+})
+
 // Create new 
 router.get('/new', (req, res) => { 
   if (req.session.currentUser) {
@@ -35,6 +48,7 @@ router.post('/new', async (req, res) => {
       ...req.body,
       user: req.session.currentUser.id,
       views: 0,
+      likes: 0,
     }
     await Article.create(newArticle)
 
