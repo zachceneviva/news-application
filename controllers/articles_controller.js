@@ -35,6 +35,7 @@ router.post('/new', async (req, res) => {
       ...req.body,
       user: req.session.currentUser.id,
       views: 0,
+      likes: 0,
     }
     await Article.create(newArticle)
 
