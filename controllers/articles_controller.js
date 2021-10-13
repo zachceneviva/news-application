@@ -1,29 +1,58 @@
 const express = require('express');
 const router = express.Router();
+const session = require('express-session')
 const { Article, User } = require("../models");
 
-
 //home / index
-router.get('/home', function (req, res) {
-        Article.find({}, (error, articles) => {
-            if (error) return console.log(error)
-            const context = {
-                articles,
-            }
-          
-            res.render("./news/home.ejs", context);
-        });
+router.get('/home', async function (req, res, next) {
+    try {
+        const article = await Article.find({});
+        const context = {
+            articles: article
+        }
+
+        res.render("./news/home.ejs", context);
+    } catch (error) {
+        console.log(error);
+        res.error = error;
+        return next ();
+    }
 });
+
+// Like Route
+router.get ('/:articleId/like', async (req, res, next) => {
+  try {
+    const article = await Article.findById(req.params.id);
+    article.likes += 1;
+    article.save();
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    return next();
+  }
+})
 
 // Create new 
 router.get('/new', (req, res) => { 
-  res.render('new.ejs');
+  if (req.session.currentUser) {
+    res.render('./news/write.ejs');
+  }
+  else {
+    res.redirect('/login')
+  }
 });
-router.post('/', async (req, res) => {   //'/' maybe = '/home'?
-  try {
-    await Article.create( req.body )
 
-    return res.redirect('/articles');
+router.post('/new', async (req, res) => { 
+  try {
+    const newArticle = {
+      ...req.body,
+      user: req.session.currentUser.id,
+      views: 0,
+      likes: 0,
+    }
+    await Article.create(newArticle)
+
+    return res.redirect('/home');
   } catch (error) {
     return console.log(error);
   }
@@ -33,12 +62,12 @@ router.post('/', async (req, res) => {   //'/' maybe = '/home'?
 router.get("/:id", async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
-    const user = await User.find({ article: req.params.id }).populate('article'); 
+    article.views += 1;
+    article.save()
     const context = {
       article,
-      review,
     }
-    return res.render("news/show.ejs", context);   //can we change news to articles?
+    return res.render("news/show.ejs", context); 
   } catch (error) {
     console.log(error);
     req.error = error;
@@ -48,11 +77,16 @@ router.get("/:id", async (req, res, next) => {
 
 //Edit
 router.get('/:articleId/edit', async (req, res) => {
-  try {  
-    const article = await Article.findById(req.params.articleId)
-    return res.render('edit.ejs', { article });
-  } catch (error) {
-    return console.log(error)
+  if (req.session.currentUser) {
+    try {  
+      const article = await Article.findById(req.params.articleId)
+      return res.render('news/edit.ejs', { article });
+    } catch (error) {
+      return console.log(error)
+    }
+  } 
+  else {
+    res.redirect('/login')
   }
 });
 
@@ -62,7 +96,7 @@ router.put('/:articleId', (req, res) => {
   Article.findByIdAndUpdate(
       req.params.articleId,
      {
-       $set: req.body
+       $set: {...req.body}
      },
       {
         new: true
@@ -70,19 +104,21 @@ router.put('/:articleId', (req, res) => {
       (error, updatedArticle) => {
           if (error) return console.log(error);
           
-          return res.redirect(`/news/${updatedArticle.id}`);
+          return res.redirect(`/${updatedArticle.id}`);
       },
   );
 });
 
 //Delete
-router.delete('/:articleId', (req, res) => {
-   Article.findByIdAndDelete( req.params.articleId, (error, deletedArticle) => {
-        if (error) return console.log(error);
-    
-        console.log(deletedArticle);
-        return res.redirect('/article');
-    });
+router.delete('/:articleId', async (req, res, next) => {
+   try {
+       await Article.findByIdAndDelete(req.params.articleId);
+       return res.redirect('/home')
+   } catch (error) {
+       console.log(error);
+       req.error = error;
+       return next();
+   }
 })
 
 module.exports = router

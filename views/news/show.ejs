@@ -30,14 +30,16 @@
                         <%= article.fullText %>
                     </p>
 
-                    //edit and delete buttons
-                    <form class="form-inline my-2 my-lg-0 mr-3" action="/home/<%= Article.id %>/edit">
-                        <input id="edit" type="edit" class="btn btn-primary my-2 my-sm-0" value="Edit">
+                    
+                <div class="input">
+                    <form id="edit-form" class="form-inline" action="/<%= article.id %>/edit">
+                        <input id="edit-edit" type="submit" class="btn btn-primary" value="Edit">
                     </form>
 
-                    <form class="form-inline my-2 my-lg-0" action="/articles/<%= article.id %>?_method=DELETE" method="POST">
-                        <input type="delete" class="btn btn-light my-2 my-sm-0" value="Delete">
+                    <form id="delete-form" class="form-inline" action="/<%= article.id %>?_method=DELETE" method="POST">
+                        <input id="edit-delete" type="submit" class="btn btn-danger" value="Delete">
                     </form>
+                </div>
 
             </div>
         </div>

@@ -31,6 +31,9 @@ const articleSchema = new mongoose.Schema({
   views: {
     type: Number,
   },
+  likes: {
+    type: Number,
+  },
   comments: [{
     type: mongoose.Types.ObjectId,
     ref: "Comment"
