@@ -27,12 +27,11 @@ const articleSchema = new mongoose.Schema({
   },
   likes: {
       type: Number,
+      default: 0,
   },
   views: {
     type: Number,
-  },
-  likes: {
-    type: Number,
+    default: 0,
   },
   comments: [{
     type: mongoose.Types.ObjectId,
