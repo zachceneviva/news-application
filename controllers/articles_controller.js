@@ -33,7 +33,8 @@ router.post('/new', async (req, res) => {
   try {
     const newArticle = {
       ...req.body,
-      user: req.session.currentUser.id
+      user: req.session.currentUser.id,
+      views: 0,
     }
     await Article.create(newArticle)
 
@@ -47,6 +48,8 @@ router.post('/new', async (req, res) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
+    article.views += 1;
+    article.save()
     const context = {
       article,
     }
