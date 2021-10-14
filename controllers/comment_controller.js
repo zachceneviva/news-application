@@ -5,12 +5,18 @@ const { Article, User, Comment } = require("../models");
 
 
 // Create Route
-router.post('/comment', async (req,res, next) => {
+router.post('/:articleId/comment', async (req,res, next) => {
     try {
-        const comment = Comment.create({
-            comment: req.body,
+        const article = await Article.findById(req.params.articleId)
+        const comments = await Comment.create({
+            ...req.body,
             user: req.session.currentUser.id,
         })
+        const context = {
+            comments,
+            article,
+        }
+        res.render('news/show.ejs', context)
     } catch (error) {
         console.log(error);
         req.error = error;
