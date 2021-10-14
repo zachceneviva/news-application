@@ -49,10 +49,16 @@
                 </div>
 
                 <hr class="comment-sepline">
-                
+
                 <div class="all-comments">
                     <h4>All Comments</h4>
-                    
+                    <hr>
+                    <% comments.forEach (comment => { %>
+                    <p class="comment-user"><%= comment.user %></p>
+                    <p class="comments"><%= comment.comment %></p>
+                    <p class="comment-date"><%= comment.date %></p>
+                    <hr>
+                    <% }) %>
                 </div>
 
                 <div class="input">

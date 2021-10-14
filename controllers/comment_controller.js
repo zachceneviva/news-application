@@ -5,7 +5,7 @@ const { Article, User, Comment } = require("../models");
 
 
 // Create Route
-router.post('/review', async (req,res, next) => {
+router.post('/comment', async (req,res, next) => {
     try {
         const comment = Comment.create({
             comment: req.body,
