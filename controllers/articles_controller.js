@@ -50,6 +50,7 @@ router.post('/new', async (req, res) => {
 
 //Show
 router.get("/:id", async (req, res, next) => {
+  if (req.session.currentUser) {
   try {
     const user = await User.findById(req.session.currentUser.id);
     const article = await Article.findById(req.params.id);
@@ -67,6 +68,10 @@ router.get("/:id", async (req, res, next) => {
     console.log(error);
     req.error = error;
     return next();
+  }
+}
+  else {
+    res.redirect('/login')
   }
 });
 
