@@ -6,6 +6,7 @@ const articleSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, "Please add a title"],
+    text: true,
   },
   date: {
     type: String,
@@ -19,10 +20,12 @@ const articleSchema = new mongoose.Schema({
   author: {
       type: String,
       required: [true, "Please add an author"],
+      text: true,
   },
   topic: {
     type: String,
-    required: [true, "Please add a topic"]
+    required: [true, "Please add a topic"],
+    text: true,
   },
   quickLook: {
       type: String,
@@ -42,11 +45,11 @@ const articleSchema = new mongoose.Schema({
   },
   comments: [{
     type: mongoose.Types.ObjectId,
-    ref: "Comments"
+    ref: "Comment"
   }],
   user: {
     type: mongoose.Types.ObjectId,
-    ref: "Users"
+    ref: "User"
   }
 }, {timestamps: true});
     

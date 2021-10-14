@@ -27,7 +27,7 @@ router.post('/:articleId/comment', async (req,res, next) => {
 // Delete Route
 router.delete('/:articleId/:id', async (req, res) => {
     try {
-        const deletedComment = Comment.findByIdAndDelete(req.params.id);
+        await Comment.findByIdAndDelete(req.params.id);
         res.redirect('/' + req.params.articleId);
     } catch (error) {
         console.log(error);

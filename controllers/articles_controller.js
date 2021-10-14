@@ -19,12 +19,25 @@ router.get('/home', async function (req, res, next) {
     }
 });
 
+// Search Route
+router.get('/search', async (req, res) => {
+    const { searchInput } = req.query;
+    const article = await Article.find({$text: {$search: searchInput}});
+    const context = {
+      articles: article,
+    }
+
+    res.render("./news/home.ejs", context);
+})
 
 
 // Create new 
 router.get('/new', (req, res) => { 
-  if (req.session.currentUser) {
+  if (req.session.currentUser.role === 'Writer') {
     res.render('./news/write.ejs');
+  }
+  else if (req.session.currentUser.role === 'Reader') {
+    res.redirect('/home')
   }
   else {
     res.redirect('/login')
@@ -54,7 +67,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const user = await User.findById(req.session.currentUser.id);
     const article = await Article.findById(req.params.id);
-    const comments = await Comment.find({article: req.params.id});
+    const comments = await Comment.find({article: req.params.id}).populate("user");
 
     article.views += 1;
     article.save()
@@ -80,6 +93,14 @@ router.post('/:id', async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
     const user = await User.findById (req.session.currentUser.id)
+    if (user.likedArticles.includes(article.id)) {
+      user.likedArticles.remove(article)
+      user.save()
+      article.likes -= 1
+      article.save()
+
+      return res.send({likes: article.likes})
+    }
     user.likedArticles.push(req.params.id);
     user.save()
     article.likes += 1;
@@ -95,13 +116,18 @@ router.post('/:id', async (req, res, next) => {
 
 //Edit
 router.get('/:articleId/edit', async (req, res) => {
-  if (req.session.currentUser) {
+  const article = await Article.findById(req.params.articleId);
+  const user = await User.findById (req.session.currentUser.id)
+  if (user.writtenArticles.includes(article.id)) {
     try {  
       const article = await Article.findById(req.params.articleId)
       return res.render('news/edit.ejs', { article });
     } catch (error) {
       return console.log(error)
     }
+  }
+  else if (user.writtenArticles.includes(article.id) === false) {
+    return res.redirect('/' + req.params.articleId)
   } 
   else {
     res.redirect('/login')
@@ -126,6 +152,18 @@ router.put('/:articleId', (req, res) => {
       },
   );
 });
+
+// GET User page
+router.get('/:username', async (req, res, next) => {
+  try { 
+    const user = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
+    return res.render('./User-Pages/user.ejs', {user});
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    next();
+  }
+})
 
 //Delete
 router.delete('/:articleId', async (req, res, next) => {

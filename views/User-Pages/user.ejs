@@ -8,10 +8,16 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
-    //written articles
+
+    <!-- written articles -->
     <div class="content">
         <div class="article-content">
-                <% const user = req.session.currentUser %>
+            <div class="user-header">
+                <h1>
+                    <%= user.fname %>'s Page
+                </h1>
+            </div>
+            <h3 class="<%= (user.role === 'Reader') ? 'd-none' : 'user-subheader' %> ">Stories Written</h3>
                 <% for(let i=user.writtenArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
@@ -20,7 +26,7 @@
                         </p>
 
                         <p class="date">
-                            <%= user.writtenArticles[i].date %> - <%= writtenArticles[i].topic %>
+                            <%= user.writtenArticles[i].date %> - <%= user.writtenArticles[i].topic %>
                         </p>
                     </div>
                     <div class="views">
@@ -44,9 +50,9 @@
                     <% } %>
             </div>
 
-            //liked articles
+            <!-- liked articles -->
             <div class="article-content">
-                <% const user = req.session.currentUser %>
+                <h3 class="user-subheader">Stories Liked</h3>
                 <% for(let i=user.likedArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
@@ -55,7 +61,7 @@
                         </p>
 
                         <p class="date">
-                            <%= user.likedArticles[i].date %> - <%= likedArticles[i].topic %>
+                            <%= user.likedArticles[i].date %> - <%= user.likedArticles[i].topic %>
                         </p>
                     </div>
                     <div class="views">
@@ -80,6 +86,7 @@
             </div>
     </div>
 
+    <%- include('../partials/footer.ejs') %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>

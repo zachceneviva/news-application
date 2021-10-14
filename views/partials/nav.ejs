@@ -12,19 +12,19 @@
                     <a class="nav-link active" aria-current="page" href="/home">Home</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="<%= (typeof user !== 'undefined') ? 'nav-link active' : 'd-none' %>" aria-current="page" href="#">My Articles</a>
+                    <a class="<%= (typeof user !== 'undefined') ? 'nav-link active' : 'd-none' %>" aria-current="page" href="<%= (typeof user !== 'undefined') ? '/' + user.username : 'd-none' %>">My Articles</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="<%= (typeof user !== 'undefined' && user.role !== 'Reader') ? 'nav-link active' : 'd-none' %>" aria-current="page" href="/new">Write an Article</a>
                 </li>
             </ul>
             
-            <h6 class="mt-2 mx-1" id="user"><%= (typeof user !== 'undefined') ? 'Welcome, ' + user.fname + '!': ' '%></h6>
-            <form id="sign-in" class="form-inline my-2 my-lg-0 mr-3" action="/login">
-                <input  type="submit" class="<%= (typeof user !== 'undefined') ? 'd-none' :'btn btn-primary my-2 my-sm-0' %>" value="Sign In">
+            <h6 class="mt-2 mx-2" id="user"><%= (typeof user !== 'undefined') ? 'Welcome, ' + user.fname + '!': ' '%></h6>
+            <form id="sign-in" class="form-inline my-2 my-lg-0" action="/login">
+                <input id="signinbtn"  type="submit" class="<%= (typeof user !== 'undefined') ? 'd-none' :'btn btn-primary my-2 my-sm-0' %>" value="Sign In">
             </form>
             <form class="form-inline my-2 my-lg-0" action="<%= (typeof user !== 'undefined') ? '/logout' : '/register' %>">
-                <input type="submit" class="btn btn-light my-2 my-sm-0 border border-dark" value="<%= (typeof user !== 'undefined') ? 'Logout' : 'Sign Up' %>">
+                <input id="signupbtn" type="submit" class="btn btn-light my-2 my-sm-0 border border-dark" value="<%= (typeof user !== 'undefined') ? 'Logout' : 'Sign Up' %>">
             </form>
         </div>
     </div>
