@@ -25,7 +25,7 @@
                     <p class="author-fulltext">
                         <%= article.author %>
                     </p>
-                    <p class="likes"><a class="like-click" userId="<%= article.id %>" onclick=<%= (user.likedArticles.includes(article.id)) ? " " :"updateLikes()" %>><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
+                    <p class="likes"><a class="like-click" userId="<%= article.id %>"><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
                 </div>
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
@@ -65,7 +65,7 @@
                     <h4>All Comments</h4>
                     <hr>
                     <% comments.forEach (comment => { %>
-                    <p class="comment-user"><b><%= comment.user %></b></p>
+                    <p class="comment-user"><b><%= comment.user.fname %></b></p>
                     <p class="comments"><%= comment.comment %></p>
                     <p class="comment-date"><em><%= comment.date %></em></p>
                     <hr>
@@ -78,17 +78,17 @@
 
 <script>
 
-    $('.bi-heart').click(function () {
-        $(this).removeClass('bi-heart');
-        $(this).addClass('bi-heart-fill');
-    });
+$('.bi-heart').click(function () {
+    $(this).toggleClass('bi-heart');
+    $(this).toggleClass('bi-heart-fill');
+    updateLikes()
+});
 
 function updateLikes () {
     article = $('.like-click').attr('userId');
     $.post('/' + article, function (res) {
         $('.like-counter').text(res.likes)
     });
-    article.attr('onClick') = null
 }
 
 </script>
