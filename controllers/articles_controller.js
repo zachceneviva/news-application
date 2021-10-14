@@ -49,7 +49,7 @@ router.post('/new', async (req, res) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
-    const comments = await Comment.find({article: req.params.id})
+    const comments = await Comment.find({article: req.params.id});
 
     article.views += 1;
     article.save()

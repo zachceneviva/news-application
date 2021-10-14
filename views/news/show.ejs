@@ -83,6 +83,13 @@ function updateLikes () {
     });
 }
 
+function updateComments () {
+    comment = $('.like-click').attr('userId');
+    $.post('/' + article, function (res) {
+        $('.like-counter').text(res.likes)
+    });
+}
+
     $('.bi-heart').click(function () {
         $(this).toggleClass('bi-heart');
         $(this).toggleClass('bi-heart-fill');

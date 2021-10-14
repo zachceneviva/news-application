@@ -11,12 +11,12 @@ router.post('/:articleId/comment', async (req,res, next) => {
         const comments = await Comment.create({
             ...req.body,
             user: req.session.currentUser.id,
+            article: req.params.articleId,
         })
-        const context = {
-            comments,
-            article,
-        }
-        res.render('news/show.ejs', context)
+        article.comments.push(comments);
+        await article.save();
+
+        return res.redirect('/' + req.params.articleId)
     } catch (error) {
         console.log(error);
         req.error = error;
