@@ -25,7 +25,7 @@
                     <p class="author-fulltext">
                         <%= article.author %>
                     </p>
-                    <p class="likes"><a class="like-click" userId="<%= article.id %>" onclick="updateLikes()"><i class="bi bi-heart"></i></a> <span class="like-counter"><%= article.likes %></span></p>
+                    <p class="likes"><a class="like-click" userId="<%= article.id %>" onclick="updateLikes()"><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
                 </div>
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
