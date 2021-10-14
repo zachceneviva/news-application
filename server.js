@@ -44,8 +44,7 @@ app.use((req, res, next) => {
 
 // 404 Route
 app.get('/*', (req, res) => {
-    const context = { error: req.error }
-    return res.status(404).render('./news/404.ejs', {context})
+    return res.redirect('/home')
 })
 
 // Server Listening Port
