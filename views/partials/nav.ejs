@@ -20,11 +20,11 @@
             </ul>
             
             <h6 class="mt-2 mx-2" id="user"><%= (typeof user !== 'undefined') ? 'Welcome, ' + user.fname + '!': ' '%></h6>
-            <form id="sign-in" class="form-inline my-2 my-lg-0 mr-3" action="/login">
+            <form id="sign-in" class="form-inline my-2 my-lg-0" action="/login">
                 <input id="signinbtn"  type="submit" class="<%= (typeof user !== 'undefined') ? 'd-none' :'btn btn-primary my-2 my-sm-0' %>" value="Sign In">
             </form>
             <form class="form-inline my-2 my-lg-0" action="<%= (typeof user !== 'undefined') ? '/logout' : '/register' %>">
-                <input id="signupbtn" type="submit" class="btn btn-light my-2 my-sm-0 mx-2 border border-dark" value="<%= (typeof user !== 'undefined') ? 'Logout' : 'Sign Up' %>">
+                <input id="signupbtn" type="submit" class="btn btn-light my-2 my-sm-0 border border-dark" value="<%= (typeof user !== 'undefined') ? 'Logout' : 'Sign Up' %>">
             </form>
         </div>
     </div>

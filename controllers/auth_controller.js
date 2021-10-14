@@ -49,7 +49,8 @@ router.post('/login', async function (req,res) {
             username: foundUser.username,
             fname: foundUser.fname,
             comments: foundUser.comments,
-            articles: foundUser.articles,
+            likedArticles: foundUser.likedArticles,
+            writtenArticles: foundUser.writtenArticles,
             role: foundUser.role,
         };
 

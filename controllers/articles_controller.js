@@ -106,13 +106,18 @@ router.post('/:id', async (req, res, next) => {
 
 //Edit
 router.get('/:articleId/edit', async (req, res) => {
-  if (req.session.currentUser) {
+  const article = await Article.findById(req.params.articleId);
+  const user = await User.findById (req.session.currentUser.id)
+  if (user.writtenArticles.includes(article.id)) {
     try {  
       const article = await Article.findById(req.params.articleId)
       return res.render('news/edit.ejs', { article });
     } catch (error) {
       return console.log(error)
     }
+  }
+  else if (user.writtenArticles.includes(article.id) === false) {
+    return res.redirect('/' + req.params.articleId)
   } 
   else {
     res.redirect('/login')
