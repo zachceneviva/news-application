@@ -19,6 +19,16 @@ router.get('/home', async function (req, res, next) {
     }
 });
 
+// Search Route
+router.get('/search', async (req, res) => {
+    const { searchInput } = req.query;
+    const article = await Article.find({$text: {$search: searchInput}});
+    const context = {
+      articles: article,
+    }
+
+    res.render("./news/home.ejs", context);
+})
 
 
 // Create new 
@@ -142,6 +152,18 @@ router.put('/:articleId', (req, res) => {
       },
   );
 });
+
+// GET User page
+router.get('/:username', async (req, res, next) => {
+  try { 
+    const user = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
+    return res.render('./User-Pages/user.ejs', {user});
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    next();
+  }
+})
 
 //Delete
 router.delete('/:articleId', async (req, res, next) => {

@@ -12,7 +12,7 @@
                     <a class="nav-link active" aria-current="page" href="/home">Home</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="<%= (typeof user !== 'undefined') ? 'nav-link active' : 'd-none' %>" aria-current="page" href="#">My Articles</a>
+                    <a class="<%= (typeof user !== 'undefined') ? 'nav-link active' : 'd-none' %>" aria-current="page" href="<%= (typeof user !== 'undefined') ? '/' + user.username : 'd-none' %>">My Articles</a>
                 </li>
                 <li class="nav-item mx-2">
                     <a class="<%= (typeof user !== 'undefined' && user.role !== 'Reader') ? 'nav-link active' : 'd-none' %>" aria-current="page" href="/new">Write an Article</a>

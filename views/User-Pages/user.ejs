@@ -8,17 +8,16 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
-    <div class="user-header">
-        <h1>
-            <%= user.username %>
-        </h1>
-    </div>
 
-    //written articles
+    <!-- written articles -->
     <div class="content">
-        <h3 class="user-subheader">Stories Written</h3>
         <div class="article-content">
-                <% const user = req.session.currentUser %>
+            <div class="user-header">
+                <h1>
+                    <%= user.fname %>'s Page
+                </h1>
+            </div>
+            <h3 class="<%= (user.role === 'Reader') ? 'd-none' : 'user-subheader' %> ">Stories Written</h3>
                 <% for(let i=user.writtenArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
@@ -27,7 +26,7 @@
                         </p>
 
                         <p class="date">
-                            <%= user.writtenArticles[i].date %> - <%= writtenArticles[i].topic %>
+                            <%= user.writtenArticles[i].date %> - <%= user.writtenArticles[i].topic %>
                         </p>
                     </div>
                     <div class="views">
@@ -51,10 +50,9 @@
                     <% } %>
             </div>
 
-            //liked articles
+            <!-- liked articles -->
             <div class="article-content">
                 <h3 class="user-subheader">Stories Liked</h3>
-                <% const user = req.session.currentUser %>
                 <% for(let i=user.likedArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
@@ -63,7 +61,7 @@
                         </p>
 
                         <p class="date">
-                            <%= user.likedArticles[i].date %> - <%= likedArticles[i].topic %>
+                            <%= user.likedArticles[i].date %> - <%= user.likedArticles[i].topic %>
                         </p>
                     </div>
                     <div class="views">
