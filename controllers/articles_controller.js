@@ -37,7 +37,10 @@ router.post('/new', async (req, res) => {
       ...req.body,
       user: req.session.currentUser.id,
     }
-    await Article.create(newArticle)
+    const article = await Article.create(newArticle);
+    const user = await User.findById (req.session.currentUser.id)
+    user.writtenArticles.push(article.id);
+    user.save()
 
     return res.redirect('/home');
   } catch (error) {
@@ -69,6 +72,9 @@ router.get("/:id", async (req, res, next) => {
 router.post('/:id', async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
+    const user = await User.findById (req.session.currentUser.id)
+    user.likedArticles.push(req.params.id);
+    user.save()
     article.likes += 1;
     article.save();
 

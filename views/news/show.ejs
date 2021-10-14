@@ -54,9 +54,9 @@
                     <h4>All Comments</h4>
                     <hr>
                     <% comments.forEach (comment => { %>
-                    <p class="comment-user"><%= comment.user %></p>
+                    <p class="comment-user"><b><%= comment.user %></b></p>
                     <p class="comments"><%= comment.comment %></p>
-                    <p class="comment-date"><%= comment.date %></p>
+                    <p class="comment-date"><em><%= comment.date %></em></p>
                     <hr>
                     <% }) %>
                 </div>
@@ -76,6 +76,11 @@
 
 <script>
 
+    $('.bi-heart').click(function () {
+        $(this).toggleClass('bi-heart');
+        $(this).toggleClass('bi-heart-fill');
+    });
+
 function updateLikes () {
     article = $('.like-click').attr('userId');
     $.post('/' + article, function (res) {
@@ -83,17 +88,6 @@ function updateLikes () {
     });
 }
 
-function updateComments () {
-    comment = $('.like-click').attr('userId');
-    $.post('/' + article, function (res) {
-        $('.like-counter').text(res.likes)
-    });
-}
-
-    $('.bi-heart').click(function () {
-        $(this).toggleClass('bi-heart');
-        $(this).toggleClass('bi-heart-fill');
-    });
 </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
