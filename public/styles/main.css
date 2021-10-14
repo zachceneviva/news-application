@@ -206,6 +206,10 @@ textarea {
   font-size: 10px;
 }
 
+#signinbtn, #signupbtn {
+  width: 75px;
+}
+
 .footer {
   display: flex;
   flex-direction: column;

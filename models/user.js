@@ -30,15 +30,15 @@ const userSchema = new mongoose.Schema({
     },
     comments: [{
       type: mongoose.Types.ObjectId,
-      ref: "Comments"
+      ref: "Comment"
     }],
     writtenArticles: [{
       type: mongoose.Types.ObjectId,
-      ref: "Articles"
+      ref: "Article"
     }],
     likedArticles: [{
       type: mongoose.Types.ObjectId,
-      ref: "Articles"
+      ref: "Article"
     }],
 
 }, {timestamps: true});

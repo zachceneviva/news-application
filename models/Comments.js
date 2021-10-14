@@ -13,11 +13,11 @@ const commentSchema = new mongoose.Schema ({
     },
     article: {
         type: mongoose.Types.ObjectId,
-        ref: "Articles"
+        ref: "Article"
     },
     user: {
         type: mongoose.Types.ObjectId,
-        ref: "Users"
+        ref: "User"
     },
 }, {timestamps: true});
 
