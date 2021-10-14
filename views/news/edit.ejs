@@ -12,6 +12,7 @@
   width: 100%;
   margin: 0;
   font-family: "Lato", sans-serif;
+  padding-top: 70px;
 }
 
 #main-logo {
@@ -71,9 +72,25 @@
   margin: 0 auto;
   margin-bottom: 25px;
 }
+
 .log-img img {
   height: 150px;
   margin: 0 auto;
+}
+
+.page-title {
+    width: 50%;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.sep-line {
+    width: 50%;
+    margin: 0 auto;
+    color: rgb(167, 167, 167);
+    margin-bottom: 25px;
 }
 </style>
 <body>
@@ -83,6 +100,13 @@
     <div class="form-img">
         <img src="https://i.ibb.co/QHbVRK2/Zashlios-favicon.png" alt="zashlios-img">
     </div>
+
+    <div class="page-title">
+        <h1>Edit Article</h1>
+    </div>
+
+    <hr class="sep-line"/>
+    
     <div class="form">
 
         <form action="/<%= article.id %>?_method=PUT" method="POST">
@@ -142,7 +166,7 @@
             <div class="submit mb-5">
                 <input type="submit" class="btn btn-primary" value="Update Article">
         </form>
-                <a href="/home" class="btn btn-danger">
+                <a href="/home" class="btn btn-light my-2 my-sm-0 border border-dark">
                     Cancel
                 </a>
             </div>
