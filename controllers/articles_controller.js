@@ -19,7 +19,31 @@ router.get('/home', async function (req, res, next) {
     }
 });
 
+// Search Route
+router.get('/search', async (req, res) => {
+    const { searchInput } = req.query;
+    const article = await Article.find({$text: {$search: searchInput}});
+    const context = {
+      articles: article,
+    }
 
+    res.render("./news/home.ejs", context);
+})
+
+
+
+// GET User page
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const article = await Article.find({user: req.params.userId}); 
+    const user = await User.findById(req.session.currentUser.id).populate("article");
+    return res.render('./User-Pages/user.ejs');
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    next();
+  }
+})
 
 // Create new 
 router.get('/new', (req, res) => { 
