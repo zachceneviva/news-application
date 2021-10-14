@@ -51,7 +51,7 @@ router.post('/new', async (req, res) => {
 //Show
 router.get("/:id", async (req, res, next) => {
   try {
-    const user = await User.findById(req.session.currentUser.id)
+    const user = await User.findById(req.session.currentUser.id);
     const article = await Article.findById(req.params.id);
     const comments = await Comment.find({article: req.params.id});
 

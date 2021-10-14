@@ -25,32 +25,33 @@
                     <p class="author-fulltext">
                         <%= article.author %>
                     </p>
-                    <p class="likes"><a class="like-click" userId="<%= article.id %>" onclick="updateLikes()"><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
+                    <p class="likes"><a class="like-click" userId="<%= article.id %>" onclick=<%= (user.likedArticles.includes(article.id)) ? " " :"updateLikes()" %>><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
                 </div>
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="full-text">
                         <%= article.fullText %>
                     </p>
+                    <hr>
 
-                <div class="create-comments bg-light">
+                <div class="create-comments mt-5">
                     <form action="/<%= article.id %>/comment" method="POST">
-                        <div class="col-11 mx-auto">
+                        <div class="col-12 mx-auto">
                             <h4 class="comment-label">Comment</h4>
                         </div>
-                        <div class="col-11 mx-auto">
+                        <div class="col-12 mx-auto">
                             <textarea class="comment-box form-control" name="comment" id="post-comment" rows="2" placeholder="Write a comment here"></textarea>
                         </div>
-                        <div class="col-11 mx-auto">
+                        <div class="col-12 mx-auto">
                             <input class="comment-button btn btn-primary my-3" type="submit" value="Post Comment">
                             <input type="hidden" name="article" value="<%= article._id%>">
                         </div>
                     </form>
                 </div>
 
-                <hr class="comment-sepline">
+                <!-- <hr class="comment-sepline"> -->
 
-                <div class="all-comments">
+                <div class="all-comments mt-5">
                     <h4>All Comments</h4>
                     <hr>
                     <% comments.forEach (comment => { %>
@@ -77,8 +78,8 @@
 <script>
 
     $('.bi-heart').click(function () {
-        $(this).toggleClass('bi-heart');
-        $(this).toggleClass('bi-heart-fill');
+        $(this).removeClass('bi-heart');
+        $(this).addClass('bi-heart-fill');
     });
 
 function updateLikes () {
@@ -86,6 +87,7 @@ function updateLikes () {
     $.post('/' + article, function (res) {
         $('.like-counter').text(res.likes)
     });
+    article.attr('onClick') = null
 }
 
 </script>
