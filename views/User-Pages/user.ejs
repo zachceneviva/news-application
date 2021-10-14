@@ -8,8 +8,15 @@
 <body>
     <%- include('../partials/nav.ejs') %>
 
+    <div class="user-header">
+        <h1>
+            <%= user.username %>
+        </h1>
+    </div>
+
     //written articles
     <div class="content">
+        <h3 class="user-subheader">Stories Written</h3>
         <div class="article-content">
                 <% const user = req.session.currentUser %>
                 <% for(let i=user.writtenArticles.length - 1; i >= 0; i--){ %>
@@ -46,6 +53,7 @@
 
             //liked articles
             <div class="article-content">
+                <h3 class="user-subheader">Stories Liked</h3>
                 <% const user = req.session.currentUser %>
                 <% for(let i=user.likedArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
