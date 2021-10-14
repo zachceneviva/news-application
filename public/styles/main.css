@@ -206,4 +206,8 @@ textarea {
   font-size: 10px;
 }
 
+#signinbtn, #signupbtn {
+  width: 75px;
+}
+
 /*# sourceMappingURL=main.css.map */
