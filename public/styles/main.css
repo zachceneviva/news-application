@@ -206,4 +206,23 @@ textarea {
   font-size: 10px;
 }
 
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-color: #dcdcdc;
+  padding: 20px;
+}
+.site-mission {
+  width: 50%;
+  margin-left: 65px;
+}
+.copyright {
+  font-size: 12px;
+  margin-left: 65px;
+}
+#footer-logo {
+  height: 50px;
+  margin-left: 65px;
+}
+
 /*# sourceMappingURL=main.css.map */
