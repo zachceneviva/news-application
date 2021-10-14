@@ -118,6 +118,7 @@ router.put('/:articleId', (req, res) => {
 router.delete('/:articleId', async (req, res, next) => {
    try {
        await Article.findByIdAndDelete(req.params.articleId);
+       await Comment.deleteMany({article: req.params.articleId})
        return res.redirect('/home')
    } catch (error) {
        console.log(error);
