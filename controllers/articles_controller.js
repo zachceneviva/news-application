@@ -31,20 +31,6 @@ router.get('/search', async (req, res) => {
 })
 
 
-
-// GET User page
-router.get('/:userId', async (req, res, next) => {
-  try {
-    const article = await Article.find({user: req.params.userId}); 
-    const user = await User.findById(req.session.currentUser.id).populate("article");
-    return res.render('./User-Pages/user.ejs');
-  } catch (error) {
-    console.log(error);
-    req.error = error;
-    next();
-  }
-})
-
 // Create new 
 router.get('/new', (req, res) => { 
   if (req.session.currentUser.role === 'Writer') {
@@ -166,6 +152,18 @@ router.put('/:articleId', (req, res) => {
       },
   );
 });
+
+// GET User page
+router.get('/:username', async (req, res, next) => {
+  try { 
+    const user = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
+    return res.render('./User-Pages/user.ejs', {user});
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    next();
+  }
+})
 
 //Delete
 router.delete('/:articleId', async (req, res, next) => {
