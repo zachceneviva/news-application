@@ -34,6 +34,7 @@ app.use(function (req, res, next) {
 
 app.use('/', controllers.auth)
 app.use('/', controllers.articles)
+app.use('/', controllers.comment)
 
 // Logger
 app.use((req, res, next) => {    

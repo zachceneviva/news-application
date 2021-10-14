@@ -147,6 +147,25 @@ textarea {
     white-space: pre-line;
 }
 
+.auth-likes {
+    margin-bottom: 20px;
+
+    .author-fulltext, .likes {
+        font-size: 12.5px;
+        margin: 0;
+    }
+
+    .like-counter {
+        margin-left: 3px;
+    }
+}
+
+.bi-heart, .bi-heart-fill {
+    color: red;
+    &:hover {
+        cursor: pointer;
+    }
+}
 .author-fulltext {
     font-size: 12.5px;
     
@@ -169,4 +188,39 @@ textarea {
     margin: 0 auto;
     color: rgb(167, 167, 167);
     margin-bottom: 25px;
+}
+
+
+.create-comments {
+    margin: 0;
+    height: auto;
+    width: 100%;
+    padding-top: 15px;
+}
+
+.comment-sepline {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+.all-comments {
+    margin-top: -10px;
+    width: 100%;
+    height: auto;
+}
+
+.comment-user {
+    margin-top: -7.5px;
+    font-size: 17.5px;
+    margin-bottom: 7.5px;
+}
+
+.comments {
+    margin: 0;
+    font-size: 15px;
+}
+
+.comment-date {
+    margin-top: 7.5px;
+    font-size: 10px;
 }

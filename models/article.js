@@ -42,11 +42,11 @@ const articleSchema = new mongoose.Schema({
   },
   comments: [{
     type: mongoose.Types.ObjectId,
-    ref: "Comment"
+    ref: "Comments"
   }],
   user: {
     type: mongoose.Types.ObjectId,
-    ref: "User"
+    ref: "Users"
   }
 }, {timestamps: true});
     

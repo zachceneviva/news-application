@@ -4,6 +4,7 @@
     
     <%- include('../partials/header.ejs', {page: 'Go Deeper'}) %>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <%- include('../partials/nav.ejs') %>
@@ -20,36 +21,76 @@
                     <h1 class="title">
                         <%= article.title %>
                     </h1>
-
+                <div class="auth-likes">
                     <p class="author-fulltext">
                         <%= article.author %>
                     </p>
-                
+                    <p class="likes"><a class="like-click" userId="<%= article.id %>" onclick=<%= (user.likedArticles.includes(article.id)) ? " " :"updateLikes()" %>><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
+                </div>
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="full-text">
                         <%= article.fullText %>
                     </p>
+                    <hr>
 
-                    <hr />
+                <div class="create-comments mt-5">
+                    <form action="/<%= article.id %>/comment" method="POST">
+                        <div class="col-12 mx-auto">
+                            <h4 class="comment-label">Comment</h4>
+                        </div>
+                        <div class="col-12 mx-auto">
+                            <textarea class="comment-box form-control" name="comment" id="post-comment" rows="2" placeholder="Write a comment here"></textarea>
+                        </div>
+                        <div class="col-12 mx-auto">
+                            <input class="comment-button btn btn-primary my-3" type="submit" value="Post Comment">
+                            <input type="hidden" name="article" value="<%= article._id%>">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- <hr class="comment-sepline"> -->
+
+                <div class="all-comments mt-5">
+                    <h4>All Comments</h4>
+                    <hr>
+                    <% comments.forEach (comment => { %>
+                    <p class="comment-user"><b><%= comment.user %></b></p>
+                    <p class="comments"><%= comment.comment %></p>
+                    <p class="comment-date"><em><%= comment.date %></em></p>
+                    <hr>
+                    <% }) %>
+                </div>
 
                 <div class="input">
                     <form id="edit-form" class="form-inline" action="/<%= article.id %>/edit">
-                        <input id="edit-edit" type="submit" class="btn btn-primary" value="Edit">
+                        <input id="edit-edit" type="submit" class="btn btn-primary my-4" value="Edit">
                     </form>
 
                     <form id="delete-form" class="form-inline" action="/<%= article.id %>?_method=DELETE" method="POST">
-                        <input id="edit-delete" type="submit" class="btn btn-light my-2 my-sm-0 border border-dark" value="Delete">
+                        <input id="edit-delete" type="submit" class="btn btn-light my-4 my-sm-0 border border-dark" value="Delete">
                     </form>
-
-                    <br /><br />
-
                 </div>
-
             </div>
         </div>
     </div>
 
+<script>
+
+    $('.bi-heart').click(function () {
+        $(this).removeClass('bi-heart');
+        $(this).addClass('bi-heart-fill');
+    });
+
+function updateLikes () {
+    article = $('.like-click').attr('userId');
+    $.post('/' + article, function (res) {
+        $('.like-counter').text(res.likes)
+    });
+    article.attr('onClick') = null
+}
+
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
