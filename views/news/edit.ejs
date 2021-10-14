@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <%- include('../partials/header.ejs', {page: 'Update'}) %>
+
+</head>
+
+<style>
+    body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  padding-top: 70px;
+}
+
+#main-logo {
+  height: 50px;
+  margin-left: 15px;
+}
+
+#login-box, #register-box {
+  box-shadow: 0px 0px 2px 0.25px lightgrey;
+}
+
+.quick-look, .full-text {
+  font-family: "Lora", serif;
+}
+
+.form {
+  margin: 0 auto;
+  width: 50%;
+  height: auto;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+}
+
+.form-img {
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+}
+.form-img img {
+  height: 100px;
+}
+
+#sign-in {
+  margin-right: 10px;
+}
+
+#edit-delete, #edit-edit {
+  width: 100px;
+}
+
+.inputs {
+  display: inline;
+}
+
+#edit-form, #delete-form {
+  margin-right: 10px;
+  display: inline;
+  margin-bottom: 50px;
+}
+
+.log-img {
+  height: 100px;
+  width: 23%;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+.log-img img {
+  height: 150px;
+  margin: 0 auto;
+}
+
+.page-title {
+    width: 50%;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.sep-line {
+    width: 50%;
+    margin: 0 auto;
+    color: rgb(167, 167, 167);
+    margin-bottom: 25px;
+}
+</style>
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+<div class="main">
+    <div class="form-img">
+        <img src="https://i.ibb.co/QHbVRK2/Zashlios-favicon.png" alt="zashlios-img">
+    </div>
+
+    <div class="page-title">
+        <h1>Edit Article</h1>
+    </div>
+
+    <hr class="sep-line"/>
+    
+    <div class="form">
+
+        <form action="/<%= article.id %>?_method=PUT" method="POST">
+            <div class="mt-0">
+                <label class="form-label">Author</label>
+                <input class="form-control"
+                type="text"
+                placeholder="e.g. Ted Lasso"
+                name="author"
+                value="<%= article.author %>">
+            </div>
+
+            <div class="mt-4">
+                <label class="form-label">Title</label>
+                <input class="form-control"
+                type="text"
+                placeholder="Your headline"
+                name="title"
+                value="<%= article.title %>">
+            </div>
+
+            <div class="mt-4">
+                <label class="form-label">Topic</label>
+                <input class="form-control"
+                type="text"
+                placeholder="e.g. Health"
+                name="topic"
+                value="<%= article.topic %>">
+
+            <div class="mt-4 mb-4">
+                <label class="form-label">Image</label>
+                <input class="form-control"
+                type="text"
+                placeholder="Link to article image"
+                name="articleImage"
+                value="<%= article.articleImage %>">
+            </div>
+
+            <div class="mt-4">
+                <label class="form-label">Article Summary</label>
+                <textarea class="form-control"
+                type="text"
+                placeholder="What the story is and why it matters"
+                name="quickLook" 
+                rows="5"><%= article.quickLook %></textarea>
+            </div>
+
+            <div class="mt-4 mb-4">
+                <label class="form-label">Full Article</label>
+                <textarea class="form-control"
+                type="text"
+                placeholder="The full story"
+                name="fullText" 
+                rows="10"><%= article.fullText %></textarea>
+            </div>
+        
+            <div class="submit mb-5">
+                <input type="submit" class="btn btn-primary" value="Update Article">
+        </form>
+                <a href="/home" class="btn btn-light my-2 my-sm-0 border border-dark">
+                    Cancel
+                </a>
+            </div>
+    </div>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>
