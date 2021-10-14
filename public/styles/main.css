@@ -135,7 +135,9 @@ textarea {
 }
 
 #soc-media-buttons {
-  vertical-align: text-bottom;
+ 
+  text-align: right;
+  align-items: baseline, center;
 
 }
 
