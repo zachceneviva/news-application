@@ -62,6 +62,21 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+// Like Route
+router.post('/:id', async (req, res, next) => {
+  try {
+    const article = await Article.findById(req.params.id);
+    article.likes += 1;
+    article.save();
+
+    return res.send({likes: article.likes})
+  } catch (error) {
+    console.log(error);
+    req.error = error;
+    next();
+  }
+})
+
 //Edit
 router.get('/:articleId/edit', async (req, res) => {
   if (req.session.currentUser) {
