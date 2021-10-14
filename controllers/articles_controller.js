@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const session = require('express-session')
-const { Article, User } = require("../models");
+const { Article, User, Comment } = require("../models");
 
 //home / index
 router.get('/home', async function (req, res, next) {
@@ -49,10 +49,12 @@ router.post('/new', async (req, res) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const article = await Article.findById(req.params.id);
+    const reviews = await Comment.find({article: req.params.id})
     article.views += 1;
     article.save()
     const context = {
       article,
+      reviews,
     }
     return res.render("news/show.ejs", context); 
   } catch (error) {
