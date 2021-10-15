@@ -33,14 +33,14 @@ router.get('/search', async (req, res) => {
 
 // Create new 
 router.get('/new', (req, res) => { 
-  if (req.session.currentUser.role === 'Writer') {
+  if (req.session.currentUser === undefined) {
+    res.redirect('/login')
+  }
+  else if (req.session.currentUser.role === 'Writer') {
     res.render('./news/write.ejs');
   }
   else if (req.session.currentUser.role === 'Reader') {
     res.redirect('/home')
-  }
-  else {
-    res.redirect('/login')
   }
 });
 
