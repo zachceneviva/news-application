@@ -6,7 +6,7 @@ const {User, Comment, Article} = require("../models");
 //home / index
 router.get('/home', async function (req, res, next) {
     try {
-        const article = await Article.find({});
+        const article = await Article.find({}).populate('user');
         const context = {
             articles: article
         }
@@ -33,14 +33,14 @@ router.get('/search', async (req, res) => {
 
 // Create new 
 router.get('/new', (req, res) => { 
-  if (req.session.currentUser.role === 'Writer') {
+  if (req.session.currentUser === undefined) {
+    res.redirect('/login')
+  }
+  else if (req.session.currentUser.role === 'Writer') {
     res.render('./news/write.ejs');
   }
   else if (req.session.currentUser.role === 'Reader') {
     res.redirect('/home')
-  }
-  else {
-    res.redirect('/login')
   }
 });
 
@@ -156,8 +156,8 @@ router.put('/:articleId', (req, res) => {
 // GET User page
 router.get('/:username', async (req, res, next) => {
   try { 
-    const user = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
-    return res.render('./User-Pages/user.ejs', {user});
+    const userPage = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
+    return res.render('./User-Pages/user.ejs', {userPage});
   } catch (error) {
     console.log(error);
     req.error = error;

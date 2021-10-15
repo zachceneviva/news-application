@@ -13,76 +13,86 @@
     <div class="content">
         <div class="article-content">
             <div class="user-header">
-                <h1>
-                    <%= user.fname %>'s Page
+                <h1 id="dash-head">
+                    <%= userPage.fname %>'s Page
                 </h1>
+                <p class="user-role"><em><%= userPage.role %> </em></p>
             </div>
-            <h3 class="<%= (user.role === 'Reader') ? 'd-none' : 'user-subheader' %> ">Stories Written</h3>
-                <% for(let i=user.writtenArticles.length - 1; i >= 0; i--){ %>
-                <div class="auth-date-views">
-                    <div class="author-date">
-                        <p class="author">
-                            <%= user.writtenArticles[i].author %>
-                        </p>
+            <hr>
+            <h3 class="<%= (userPage.role === 'Reader') ? 'd-none' : 'user-subheader' %> ">Stories Written</h3>
+            <hr class="<%= (userPage.role === 'Reader') ? 'd-none' : 'written-sepline' %> " id="write-breakline">
+            <div class="card-container-for-render">
+                <% for(let i=userPage.writtenArticles.length - 1; i >= 0; i--){ %>
+                        <div class="card-for-render">
+                        <div class="card-content-for-render">
+                            <div class="card-img">
+                                <img src="<%= userPage.writtenArticles[i].articleImage %>" alt="articel image">
+                            </div>
+                            <div class="main-card-content">
+                                <div class="card-title">
+                                    <a href="/<%= userPage.writtenArticles[i].id %>"><h4><%= userPage.writtenArticles[i].title %></h4></a>
+                                </div>
+                                <div class="card-other">
+                                    <div class="card-author">
+                                        <p class="author-likedart">
+                                            <%= userPage.writtenArticles[i].author %>
+                                        </p>
+                                        <p class="date-topic">
+                                            <%= userPage.writtenArticles[i].date %> - <%= userPage.writtenArticles[i].topic %>
+                                        </p>
 
-                        <p class="date">
-                            <%= user.writtenArticles[i].date %> - <%= user.writtenArticles[i].topic %>
-                        </p>
+                                    </div>
+                                    <div class="card-view">
+                                        <p class="card-view-count">
+                                            Views: <%= userPage.writtenArticles[i].views %>
+                                        </p>
+                                        <p class="likes-card"><i class="bi bi-heart-fill"></i></a> <span class="like-counter"><%= userPage.writtenArticles[i].likes %></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="views">
-                        <p>
-                            Views: <%= user.writtenArticles[i].views %>
-                        </p>
-                    </div>
-                </div>
-                    <h1 class="title">
-                        <%= user.writtenArticles[i].title %>
-                    </h1>
-
-                    <img src="<%= user.writtenArticles[i].articleImage %>" alt="Placeholder image" class="article-image" />
-
-                    <p class="quick-look">
-                        <b><em>Quick Look: </em></b> <%= user.writtenArticles[i].quickLook %>
-                    </p>
-
-                    <a href="/<%= user.writtenArticles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
-                    <hr>
                     <% } %>
             </div>
+        </div>
 
             <!-- liked articles -->
             <div class="article-content">
-                <h3 class="user-subheader">Stories Liked</h3>
-                <% for(let i=user.likedArticles.length - 1; i >= 0; i--){ %>
-                <div class="auth-date-views">
-                    <div class="author-date">
-                        <p class="author">
-                            <%= user.likedArticles[i].author %>
-                        </p>
+                <h3 class="user-subheader-likes">Stories Liked</h3>
+                <hr class="written-sepline">
+                <div class="card-container-for-render">
+                <% for(let i=userPage.likedArticles.length - 1; i >= 0; i--){ %>
+                    <div class="card-for-render">
+                        <div class="card-content-for-render">
+                            <div class="card-img">
+                                <img src="<%= userPage.likedArticles[i].articleImage %>" alt="articel image">
+                            </div>
+                            <div class="main-card-content">
+                                <div class="card-title">
+                                    <a href="/<%= userPage.likedArticles[i].id %>"><h4><%= userPage.likedArticles[i].title %></h4></a>
+                                </div>
+                                <div class="card-other">
+                                    <div class="card-author">
+                                        <p class="author-likedart">
+                                            <%= userPage.likedArticles[i].author %>
+                                        </p>
+                                        <p class="date-topic">
+                                            <%= userPage.likedArticles[i].date %> - <%= userPage.likedArticles[i].topic %>
+                                        </p>
 
-                        <p class="date">
-                            <%= user.likedArticles[i].date %> - <%= user.likedArticles[i].topic %>
-                        </p>
+                                    </div>
+                                    <div class="card-view">
+                                        <p class="card-view-count">
+                                            Views: <%= userPage.likedArticles[i].views %>
+                                        </p>
+                                        <p class="likes-card"><i class="bi bi-heart-fill"></i></a> <span class="like-counter"><%= userPage.likedArticles[i].likes %></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="views">
-                        <p>
-                            Views: <%= user.likedArticles[i].views %>
-                        </p>
-                    </div>
-                </div>
-                    <h1 class="title">
-                        <%= user.likedArticles[i].title %>
-                    </h1>
-
-                    <img src="<%= user.likedArticles[i].articleImage %>" alt="Placeholder image" class="article-image" />
-
-                    <p class="quick-look">
-                        <b><em>Quick Look: </em></b> <%= user.likedArticles[i].quickLook %>
-                    </p>
-
-                    <a href="/<%= user.likedArticles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
-                    <hr>
                     <% } %>
+                </div>
             </div>
     </div>
 

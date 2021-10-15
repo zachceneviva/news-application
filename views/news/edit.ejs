@@ -116,7 +116,9 @@
                 type="text"
                 placeholder="e.g. Ted Lasso"
                 name="author"
-                value="<%= article.author %>">
+                value="<%= article.author %>"
+                autocomplete="off"
+                required>
             </div>
 
             <div class="mt-4">
@@ -125,7 +127,9 @@
                 type="text"
                 placeholder="Your headline"
                 name="title"
-                value="<%= article.title %>">
+                value="<%= article.title %>"
+                autocomplete="off"
+                required>
             </div>
 
             <div class="mt-4">
@@ -134,7 +138,9 @@
                 type="text"
                 placeholder="e.g. Health"
                 name="topic"
-                value="<%= article.topic %>">
+                value="<%= article.topic %>"
+                autocomplete="off"
+                required>
 
             <div class="mt-4 mb-4">
                 <label class="form-label">Image</label>
@@ -142,7 +148,9 @@
                 type="text"
                 placeholder="Link to article image"
                 name="articleImage"
-                value="<%= article.articleImage %>">
+                value="<%= article.articleImage %>"
+                autocomplete="off"
+                required>
             </div>
 
             <div class="mt-4">
@@ -151,7 +159,7 @@
                 type="text"
                 placeholder="What the story is and why it matters"
                 name="quickLook" 
-                rows="5"><%= article.quickLook %></textarea>
+                rows="5" required><%= article.quickLook %></textarea>
             </div>
 
             <div class="mt-4 mb-4">
@@ -160,7 +168,7 @@
                 type="text"
                 placeholder="The full story"
                 name="fullText" 
-                rows="10"><%= article.fullText %></textarea>
+                rows="10" required><%= article.fullText %></textarea>
             </div>
         
             <div class="submit mb-5">
