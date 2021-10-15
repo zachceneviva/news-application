@@ -6,7 +6,7 @@ const {User, Comment, Article} = require("../models");
 //home / index
 router.get('/home', async function (req, res, next) {
     try {
-        const article = await Article.find({});
+        const article = await Article.find({}).populate('user');
         const context = {
             articles: article
         }

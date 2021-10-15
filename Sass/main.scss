@@ -255,3 +255,11 @@ textarea {
 #fname-capital, #user, #dash-head {
     text-transform: capitalize;
 }
+
+.user-comment-link {
+    text-decoration: none;
+    color: black;
+    &:hover {
+        text-decoration: underline;
+    }
+}

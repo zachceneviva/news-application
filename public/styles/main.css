@@ -241,4 +241,12 @@ textarea {
   text-transform: capitalize;
 }
 
+.user-comment-link {
+  text-decoration: none;
+  color: black;
+}
+.user-comment-link:hover {
+  text-decoration: underline;
+}
+
 /*# sourceMappingURL=main.css.map */

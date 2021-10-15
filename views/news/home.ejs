@@ -24,9 +24,9 @@
                 <% for(let i=articles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
-                        <p class="author">
+                        <a class="user-comment-link" href="/<%=articles[i].user.username%>"><p class="author">
                             <%= articles[i].author %>
-                        </p>
+                        </p></a>
 
                         <p class="date">
                             <%= articles[i].date %> - <%= articles[i].topic %>
