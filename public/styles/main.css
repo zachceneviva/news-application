@@ -237,4 +237,8 @@ textarea {
   margin-bottom: 30px;
 }
 
+#fname-capital, #user, #dash-head {
+  text-transform: capitalize;
+}
+
 /*# sourceMappingURL=main.css.map */
