@@ -13,39 +13,39 @@
     <div class="content">
         <div class="article-content">
             <div class="user-header">
-                <h1>
-                    <%= user.fname %>'s Page
+                <h1 id="dash-head">
+                    <%= userPage.fname %>'s Page
                 </h1>
             </div>
             <h3 class="<%= (user.role === 'Reader') ? 'd-none' : 'user-subheader' %> ">Stories Written</h3>
-                <% for(let i=user.writtenArticles.length - 1; i >= 0; i--){ %>
+                <% for(let i=userPage.writtenArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
                         <p class="author">
-                            <%= user.writtenArticles[i].author %>
+                            <%= userPage.writtenArticles[i].author %>
                         </p>
 
                         <p class="date">
-                            <%= user.writtenArticles[i].date %> - <%= user.writtenArticles[i].topic %>
+                            <%= userPage.writtenArticles[i].date %> - <%= userPage.writtenArticles[i].topic %>
                         </p>
                     </div>
                     <div class="views">
                         <p>
-                            Views: <%= user.writtenArticles[i].views %>
+                            Views: <%= userPage.writtenArticles[i].views %>
                         </p>
                     </div>
                 </div>
                     <h1 class="title">
-                        <%= user.writtenArticles[i].title %>
+                        <%= userPage.writtenArticles[i].title %>
                     </h1>
 
-                    <img src="<%= user.writtenArticles[i].articleImage %>" alt="Placeholder image" class="article-image" />
+                    <img src="<%= userPage.writtenArticles[i].articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="quick-look">
-                        <b><em>Quick Look: </em></b> <%= user.writtenArticles[i].quickLook %>
+                        <b><em>Quick Look: </em></b> <%= userPage.writtenArticles[i].quickLook %>
                     </p>
 
-                    <a href="/<%= user.writtenArticles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
+                    <a href="/<%= userPage.writtenArticles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
                     <hr>
                     <% } %>
             </div>
@@ -53,34 +53,34 @@
             <!-- liked articles -->
             <div class="article-content">
                 <h3 class="user-subheader">Stories Liked</h3>
-                <% for(let i=user.likedArticles.length - 1; i >= 0; i--){ %>
+                <% for(let i=userPage.likedArticles.length - 1; i >= 0; i--){ %>
                 <div class="auth-date-views">
                     <div class="author-date">
                         <p class="author">
-                            <%= user.likedArticles[i].author %>
+                            <%= userPage.likedArticles[i].author %>
                         </p>
 
                         <p class="date">
-                            <%= user.likedArticles[i].date %> - <%= user.likedArticles[i].topic %>
+                            <%= userPage.likedArticles[i].date %> - <%= userPage.likedArticles[i].topic %>
                         </p>
                     </div>
                     <div class="views">
                         <p>
-                            Views: <%= user.likedArticles[i].views %>
+                            Views: <%= userPage.likedArticles[i].views %>
                         </p>
                     </div>
                 </div>
                     <h1 class="title">
-                        <%= user.likedArticles[i].title %>
+                        <%= userPage.likedArticles[i].title %>
                     </h1>
 
-                    <img src="<%= user.likedArticles[i].articleImage %>" alt="Placeholder image" class="article-image" />
+                    <img src="<%= userPage.likedArticles[i].articleImage %>" alt="Placeholder image" class="article-image" />
 
                     <p class="quick-look">
-                        <b><em>Quick Look: </em></b> <%= user.likedArticles[i].quickLook %>
+                        <b><em>Quick Look: </em></b> <%= userPage.likedArticles[i].quickLook %>
                     </p>
 
-                    <a href="/<%= user.likedArticles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
+                    <a href="/<%= userPage.likedArticles[i].id %>" class="article-link">Go Deeper <i class="bi bi-arrow-right"></i></a>
                     <hr>
                     <% } %>
             </div>

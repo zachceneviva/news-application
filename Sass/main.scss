@@ -251,3 +251,15 @@ textarea {
 .search-bar {
     margin-bottom: 30px;
 }
+
+#fname-capital, #user, #dash-head {
+    text-transform: capitalize;
+}
+
+.user-comment-link {
+    text-decoration: none;
+    color: black;
+    &:hover {
+        text-decoration: underline;
+    }
+}

@@ -22,9 +22,9 @@
                         <%= article.title %>
                     </h1>
                 <div class="auth-likes">
-                    <p class="author-fulltext">
+                    <a class="user-comment-link" href="/<%= article.user.username %>"><p class="author-fulltext">
                         <%= article.author %>
-                    </p>
+                    </p></a>
                     <p class="likes"><a class="like-click" userId="<%= article.id %>"><i class="bi <%= (user.likedArticles.includes(article.id)) ? 'bi-heart-fill' : 'bi-heart' %>"></i></a> <span class="like-counter"><%= article.likes %></span></p>
                 </div>
                     <img src="<%= article.articleImage %>" alt="Placeholder image" class="article-image" />
@@ -65,7 +65,7 @@
                     <h4>All Comments</h4>
                     <hr>
                     <% comments.forEach (comment => { %>
-                    <p class="comment-user"><b><%= comment.user.fname %></b></p>
+                    <a class="user-comment-link" href="/<%= comment.user.username%>"><p class="comment-user"><b><%= comment.user.fname %></b></p></a>
                     <p class="comments"><%= comment.comment %></p>
                     <p class="comment-date"><em><%= comment.date %></em></p>
                     <hr>

@@ -6,7 +6,7 @@ const {User, Comment, Article} = require("../models");
 //home / index
 router.get('/home', async function (req, res, next) {
     try {
-        const article = await Article.find({});
+        const article = await Article.find({}).populate('user');
         const context = {
             articles: article
         }
@@ -156,8 +156,8 @@ router.put('/:articleId', (req, res) => {
 // GET User page
 router.get('/:username', async (req, res, next) => {
   try { 
-    const user = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
-    return res.render('./User-Pages/user.ejs', {user});
+    const userPage = await User.findOne( {username: req.params.username} ).populate("writtenArticles").populate("likedArticles")
+    return res.render('./User-Pages/user.ejs', {userPage});
   } catch (error) {
     console.log(error);
     req.error = error;

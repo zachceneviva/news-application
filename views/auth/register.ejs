@@ -21,19 +21,19 @@
                     <form action="/register" method="POST">
                         <div class="form-outline mb-4">
                             <label class="form-label">Full Name</label>
-                            <input name="fname" type="text" class="form-control form-control-lg" />
+                            <input name="fname" type="text" class="form-control form-control-lg" autocomplete="off" id="fname-capital" required/>
                           </div>
                       <div class="form-outline mb-4">
                         <label class="form-label">Email</label>
-                        <input name="email" type="text" class="form-control form-control-lg" />
+                        <input name="email" type="text" class="form-control form-control-lg" autocomplete="off" required/>
                       </div>
                       <div class="form-outline mb-4">
                         <label class="form-label">Username</label>
-                        <input name="username" type="text" class="form-control form-control-lg" />
+                        <input name="username" type="text" class="form-control form-control-lg" autocomplete="off" required/>
                       </div>
                       <div class="form-outline mb-4">
                         <label class="form-label">Account Type</label>
-                        <select name="role" id="role-type" class="form-control custom-select form-control-lg">
+                        <select name="role" id="role-type" class="form-control custom-select form-control-lg" required>
                             <option value="Reader">Choose Account Type</option>
                             <option value="Reader">Reader</option>
                             <option value="Writer">Writer</option>
@@ -42,7 +42,7 @@
       
                       <div class="form-outline mb-2">
                         <label class="form-label" >Password</label>
-                        <input  name="password" type="password" class="form-control form-control-lg" />
+                        <input  name="password" type="password" class="form-control form-control-lg" autocomplete="off" required/>
                       </div>
     
                       </div>

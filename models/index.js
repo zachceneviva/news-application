@@ -1,9 +1,9 @@
 require('../config/db.connection')
 
 module.exports = {
-    User: require("./User"),
+    User: require("./user"),
     Comment: require("./Comments"),
-    Article: require("./Article"),
+    Article: require("./article"),
 };
 
 
